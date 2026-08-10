@@ -1,7 +1,7 @@
 ## :dizzy: Ejercicio de Taller de Desarrollo Web
 
 - Agustín Rodríguez **Richard**
-- Lucas Rodríguez **Richard**
+
 
 1. Item 1
 2. Item 2
