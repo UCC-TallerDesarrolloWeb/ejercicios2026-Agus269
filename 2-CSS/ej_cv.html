@@ -3,40 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <title>CV Nombre Apellido</title>
+
+    <link rel="icon" href="imagenes/icono_usuario.jpg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <style>
+
+        body {
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, lightblue, lightgray);
+        }
+
+        div {
+            border: 2px solid black;
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            opacity: 0.95;
+            border-radius: 15px;
+            box-shadow: 5px 5px 10px gray;
+        }
+
+        #encabezado {
+            min-height: 150px;
+        }
+
+        #encabezado img {
+            float: left;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+        }
+
+        .curso {
+            background-color: lightgray;
+        }
+
+        h1, h2, h3, h4 {
+            text-shadow: 2px 2px 4px gray;
+        }
+
+        p {
+            text-shadow: 1px 1px 2px lightgray;
+        }
+
+    </style>
+
 </head>
 <body>
 
-<div>
-    <h1>Nombre Alumno</h1>
-    <h2>Ing. en Computacion</h2>
+<div id="encabezado">
+
+    <img src="imagenes/WIN_20260831_11_24_39_Pro.jpg" alt="Foto de perfil">
+
+    <h1>Agustín Rodríguez</h1>
+    <h2>Ing. en Informática</h2>
 </div>
 
 <div>
     <h3>Datos Personales</h3>
-    <p><span>Fecha de Nacimiento:</span> dd/mm/aaaa</p>
-    <p><span>Email:</span> email@email.com</p>
+    <p><span>Fecha de Nacimiento:</span> 26/09/2006</p>
+    <p><span>Email:</span> 2522521@ucc.edu.ar</p>
 </div>
 
 <div>
     <h3>Formacion Academica</h3>
-    <p><span>Carrera:</span> Ingeniería XXXXX</p>
+    <p><span>Carrera:</span> Ingeniería en Informática</p>
     <p><span>Universidad:</span> Universidad Católica de Córdoba</p>
-    <p><span>Año de Ingreso:</span> 2018</p>
+    <p><span>Año de Ingreso:</span> 2025</p>
 </div>
 
 <div>
     <h3>Cursos</h3>
 
-    <div>
-        <h4>Nombre Curso 1</h4>
-        <p><span>Lugar:</span> Nombre Institución</p>
-        <p><span>Año:</span> XXXX </p>
+    <div class="curso">
+        <h4>Taller de desarrollo web</h4>
+        <p><span>Lugar:</span> UCC</p>
+        <p><span>Año:</span> 2026 </p>
     </div>
 
-    <div>
-        <h4>Nombre Curso 2</h4>
-        <p><span>Lugar:</span> Nombre Institución</p>
-        <p><span>Año:</span> XXXX </p>
+    <div class="curso">
+        <h4>Git</h4>
+        <p><span>Lugar:</span> UCC </p>
+        <p><span>Año:</span> 2026 </p>
     </div>
 </div>
 
