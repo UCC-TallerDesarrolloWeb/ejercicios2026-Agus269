@@ -57,3 +57,44 @@
     height: 200px;
     object-fit: contain;
 }
+
+fieldset {
+    margin-bottom: 15px;
+    padding: 15px;
+}
+
+fieldset input[type="text"],
+fieldset input[type="number"] {
+    width: 90%;
+    padding: 5px;
+}
+
+:root {
+    --color-catalogo: darkred;
+    --color-carrito: darkblue;
+    --color-hover: gray;
+    --color-texto: white;
+}
+
+.item2 button {
+    color: var(--color-texto);
+    border: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+
+    transition: background-color 0.5s, padding 0.5s;
+}
+
+.catalogo {
+    background-color: var(--color-catalogo);
+}
+
+.carrito {
+    background-color: var(--color-carrito);
+}
+
+.item2 button:hover {
+    background-color: var(--color-hover);
+    padding: 15px 20px;
+}

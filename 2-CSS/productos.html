@@ -13,16 +13,58 @@
 </header>
 
 <nav class="item2">
-    <a href="#">Inicio</a>
-    <a href="#">Productos</a>
-    <a href="#">Contacto</a>
+   <nav class="item2">
+    <button class="catalogo">Catálogo</button>
+    <button class="carrito">Carrito de Compras</button>
 </nav>
 
 <aside class="item3">
-    <h2>Categorías</h2>
-    <p>Protectores</p>
-    <p>Dobok</p>
-    <p>Entrenamiento</p>
+
+    <form>
+
+        <fieldset>
+            <legend>Búsqueda</legend>
+
+            <label for="buscar">Buscar:</label>
+            <input type="text" id="buscar">
+        </fieldset>
+
+        <fieldset>
+            <legend>Precios</legend>
+
+            <p>
+                <label for="minimo">Mínimo:</label>
+                <input type="number" id="minimo">
+            </p>
+
+            <p>
+                <label for="maximo">Máximo:</label>
+                <input type="number" id="maximo">
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Tipo de Productos</legend>
+
+            <p>
+                <input type="checkbox" id="protectores">
+                <label for="protectores">Protectores</label>
+            </p>
+
+            <p>
+                <input type="checkbox" id="entrenamiento">
+                <label for="entrenamiento">Entrenamiento</label>
+            </p>
+
+            <p>
+                <input type="checkbox" id="doboks">
+                <label for="doboks">Doboks</label>
+            </p>
+
+        </fieldset>
+
+    </form>
+
 </aside>
 
 <main class="item4">
