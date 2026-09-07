@@ -1,6 +1,42 @@
-body {
+.grid-container {
+    display: grid;
+
+    grid-template-areas:
+        "header header header header"
+        "nav nav nav nav"
+        "aside main main main"
+        "footer footer footer footer";
+
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+
     font-family: Arial, sans-serif;
+}
+
+.item1 {
+    grid-area: header;
     text-align: center;
+}
+
+.item2 {
+    grid-area: nav;
+    text-align: center;
+    padding: 15px;
+}
+
+.item3 {
+    grid-area: aside;
+    padding: 20px;
+}
+
+.item4 {
+    grid-area: main;
+}
+
+.item5 {
+    grid-area: footer;
+    text-align: center;
+    padding: 15px;
 }
 
 .productos {
@@ -13,6 +49,7 @@ body {
 .tarjeta {
     border: 1px solid black;
     padding: 15px;
+    text-align: center;
 }
 
 .tarjeta img {
