@@ -40,10 +40,10 @@
 -  [x] 2 Columnas
 -  [x] Grid
 -  [x] grid-areas
--  [ ] Mejora
--  [ ] Transitions
--  [ ] Viewport
--  [ ] Responsive
+-  [x] Mejora
+-  [x] Transitions
+-  [x] Viewport
+-  [x] Responsive
 
 ## Unidad 3: JavaScript y ES6+
 
