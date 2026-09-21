@@ -8,44 +8,103 @@
  * @param {string} unidad - Unidad modificada por el usuario.
  * @return {void} La funcion no retorna ningun valor.
  */
-function cambioUnidades(valor, unidad) {
+let cambioUnidades = (valor, unidad) => {
 
-    let metro = document.getElementById("metro");
-    let pulgada = document.getElementById("pulgada");
-    let pie = document.getElementById("pie");
-    let yarda = document.getElementById("yarda");
+    let metro;
+    let pulgada;
+    let pie;
+    let yarda;
 
     if (isNaN(valor)) {
 
         alert("Se ingreso un valor invalido en " + unidad);
 
-        metro.value = "";
-        pulgada.value = "";
-        pie.value = "";
-        yarda.value = "";
+        metro = "";
+        pulgada = "";
+        pie = "";
+        yarda = "";
 
     } else if (unidad == "metro") {
 
-        pulgada.value = valor * 39.3701;
-        pie.value = valor * 3.28084;
-        yarda.value = valor * 1.09361;
+        metro = valor;
+        pulgada = valor * 39.3701;
+        pie = valor * 3.28084;
+        yarda = valor * 1.09361;
 
     } else if (unidad == "pulgada") {
 
-        metro.value = valor * 0.0254;
-        pie.value = valor * 0.08333;
-        yarda.value = valor * 0.027778;
+        pulgada = valor;
+        metro = valor * 0.0254;
+        pie = valor * 0.08333;
+        yarda = valor * 0.027778;
 
     } else if (unidad == "pie") {
 
-        metro.value = valor * 0.3048;
-        pulgada.value = valor * 12;
-        yarda.value = valor * 0.333333;
+        pie = valor;
+        metro = valor * 0.3048;
+        pulgada = valor * 12;
+        yarda = valor * 0.333333;
 
     } else if (unidad == "yarda") {
 
-        metro.value = valor * 0.9144;
-        pulgada.value = valor * 36;
-        pie.value = valor * 3;
+        yarda = valor;
+        metro = valor * 0.9144;
+        pulgada = valor * 36;
+        pie = valor * 3;
+    }
+
+    document.getElementById("metro").value = metro;
+    document.getElementById("pulgada").value = pulgada;
+    document.getElementById("pie").value = pie;
+    document.getElementById("yarda").value = yarda;
+};
+
+
+/**
+ * Convierte grados a radianes y radianes a grados.
+ *
+ * @method convertirGradosRadianes
+ * @param {number} valor - Valor ingresado por el usuario.
+ * @param {string} unidad - Campo modificado por el usuario.
+ * @return {void} La funcion no retorna ningun valor.
+ */
+function convertirGradosRadianes(valor, unidad) {
+
+    let grados = document.getElementById("grados");
+    let radianes = document.getElementById("radianes");
+
+    if (isNaN(valor)) {
+
+        alert("Se ingreso un valor invalido");
+
+        grados.value = "";
+        radianes.value = "";
+
+    } else if (unidad == "grados") {
+
+        radianes.value = valor * Math.PI / 180;
+
+    } else if (unidad == "radianes") {
+
+        grados.value = valor * 180 / Math.PI;
     }
 }
+
+/**
+ * Muestra u oculta el div dependiendo del radio button seleccionado.
+ *
+ * @method mostrarOcultarDiv
+ * @param {string} opcion - Opcion seleccionada por el usuario.
+ * @return {void}
+ */
+let mostrarOcultarDiv = (opcion) => {
+
+    if (opcion === "val_mostrar") {
+
+        document.getElementById("unDiv").style.display = "block";
+
+    } else if (opcion === "val_ocultar") {
+
+        document.getElementById("unDiv").style.display = "none";
+    }
+};
