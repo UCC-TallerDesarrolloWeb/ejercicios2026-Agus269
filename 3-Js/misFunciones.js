@@ -1,12 +1,10 @@
 /**
  * Convierte unidades entre metros, pulgadas, pies y yardas.
- * Dependiendo del campo modificado, calcula los valores
- * correspondientes para las otras unidades.
  *
  * @method cambioUnidades
  * @param {number} valor - Valor ingresado por el usuario.
  * @param {string} unidad - Unidad modificada por el usuario.
- * @return {void} La funcion no retorna ningun valor.
+ * @return {void}
  */
 let cambioUnidades = (valor, unidad) => {
 
@@ -14,6 +12,10 @@ let cambioUnidades = (valor, unidad) => {
     let pulgada;
     let pie;
     let yarda;
+
+    if (valor.includes(",")) {
+        valor = valor.replace(",", ".");
+    }
 
     if (isNaN(valor)) {
 
@@ -53,6 +55,13 @@ let cambioUnidades = (valor, unidad) => {
         pie = valor * 3;
     }
 
+    if (metro !== "") {
+        metro = Math.round(metro * 100) / 100;
+        pulgada = Math.round(pulgada * 100) / 100;
+        pie = Math.round(pie * 100) / 100;
+        yarda = Math.round(yarda * 100) / 100;
+    }
+
     document.getElementById("metro").value = metro;
     document.getElementById("pulgada").value = pulgada;
     document.getElementById("pie").value = pie;
@@ -66,7 +75,7 @@ let cambioUnidades = (valor, unidad) => {
  * @method convertirGradosRadianes
  * @param {number} valor - Valor ingresado por el usuario.
  * @param {string} unidad - Campo modificado por el usuario.
- * @return {void} La funcion no retorna ningun valor.
+ * @return {void}
  */
 function convertirGradosRadianes(valor, unidad) {
 
@@ -90,6 +99,7 @@ function convertirGradosRadianes(valor, unidad) {
     }
 }
 
+
 /**
  * Muestra u oculta el div dependiendo del radio button seleccionado.
  *
@@ -109,32 +119,52 @@ let mostrarOcultarDiv = (opcion) => {
     }
 };
 
+
 /**
- * Abre el dialog con el detalle del producto.
+ * Abre el dialog y muestra la informacion del producto seleccionado.
  *
  * @method abrirDialog
+ * @param {number} indice - Posicion del producto en el array.
  * @return {void}
  */
-let abrirDialog = () => {
+let abrirDialog = (indice) => {
 
-    let dialog = document.getElementById("dialogProducto");
+    let producto = productos[indice];
 
-    dialog.showModal();
+    let contenido = `
+        <h2>${producto.nombre}</h2>
+
+        <img
+            src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/${producto.imagen}"
+            alt="${producto.nombre}"
+        >
+
+        <p>${producto.description}</p>
+
+        <p>Categoria: ${producto.categoria}</p>
+
+        <p>Marca: ${producto.marca}</p>
+
+        <p>Precio: $${producto.precio}</p>
+    `;
+
+    document.getElementById("contenidoDialog").innerHTML = contenido;
+
+    document.getElementById("dialogProducto").showModal();
 };
 
 
 /**
- * Cierra el dialog con el detalle del producto.
+ * Cierra el dialog.
  *
  * @method cerrarDialog
  * @return {void}
  */
 let cerrarDialog = () => {
 
-    let dialog = document.getElementById("dialogProducto");
-
-    dialog.close();
+    document.getElementById("dialogProducto").close();
 };
+
 
 /**
  * Realiza la suma de dos numeros.
@@ -152,7 +182,7 @@ let sumar = () => {
 
     let resultado = num1 + num2;
 
-    document.getElementById("totalS").value = resultado;
+    document.getElementById("totalS").innerHTML = resultado;
 };
 
 
@@ -172,7 +202,7 @@ let restar = () => {
 
     let resultado = num1 - num2;
 
-    document.getElementById("totalR").value = resultado;
+    document.getElementById("totalR").innerHTML = resultado;
 };
 
 
@@ -192,7 +222,7 @@ let multiplicar = () => {
 
     let resultado = num1 * num2;
 
-    document.getElementById("totalM").value = resultado;
+    document.getElementById("totalM").innerHTML = resultado;
 };
 
 
@@ -212,5 +242,44 @@ let dividir = () => {
 
     let resultado = num1 / num2;
 
-    document.getElementById("totalD").value = resultado;
+    document.getElementById("totalD").innerHTML = resultado;
+};
+
+
+/**
+ * Genera dinamicamente las tarjetas de productos.
+ *
+ * @method renderizarProductos
+ * @return {void}
+ */
+let renderizarProductos = () => {
+
+    let contenido = "";
+
+    productos.forEach((producto, indice) => {
+
+        contenido += `
+            <div class="tarjeta">
+
+                <img
+                    src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/${producto.imagen}"
+                    alt="${producto.nombre}"
+                >
+
+                <h2>${producto.nombre}</h2>
+
+                <p>Precio: $${producto.precio}</p>
+
+                <button
+                    type="button"
+                    onclick="abrirDialog(${indice})"
+                >
+                    Ver detalle de Producto
+                </button>
+
+            </div>
+        `;
+    });
+
+    document.getElementById("productos").innerHTML = contenido;
 };

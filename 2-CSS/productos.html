@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Productos</title>
+
     <link rel="stylesheet" href="productos.css">
+
+    <script type="text/javascript" src="tienda.js"></script>
     <script type="text/javascript" src="misFunciones.js"></script>
 </head>
 
-<body class="grid-container">
+<body class="grid-container" onload="renderizarProductos()">
 
 <header class="item1">
     <h1>Tienda de Productos</h1>
@@ -69,48 +73,13 @@
 
 <main class="item4">
 
-    <div class="productos">
-
-        <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/cabezal-cerrado.webp" alt="Cabezal Sparring">
-            <h2>Cabezal Sparring</h2>
-            <button type="button" onclick="abrirDialog()">Ver detalle de Producto</button>
-        </div>
-
-        <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/dobok.webp" alt="Dobok Dan">
-            <h2>Dobok Dan</h2>
-        </div>
-
-        <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/escudo-potencia.webp" alt="Escudo de Potencia">
-            <h2>Escudo de Potencia</h2>
-        </div>
-
-        <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/foco-con-dedos.webp" alt="Par de focos redondos">
-            <h2>Par de focos redondos</h2>
-        </div>
-
-        <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/protectores-manos.webp" alt="Guantes 10 onzas">
-            <h2>Guantes 10 onzas</h2>
-        </div>
-
-        <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/protectores-manos.webp" alt="Protectores Pie">
-            <h2>Protectores Pie</h2>
-        </div>
-
+    <div class="productos" id="productos">
     </div>
 
     <dialog id="dialogProducto">
 
-        <h2>Detalle del Producto</h2>
-
-        <p>
-            Informacion detallada del producto seleccionado.
-        </p>
+        <div id="contenidoDialog">
+        </div>
 
         <button type="button" onclick="cerrarDialog()">Cerrar</button>
 
@@ -123,4 +92,5 @@
 </footer>
 
 </body>
+
 </html>
