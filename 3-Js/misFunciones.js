@@ -108,3 +108,109 @@ let mostrarOcultarDiv = (opcion) => {
         document.getElementById("unDiv").style.display = "none";
     }
 };
+
+/**
+ * Abre el dialog con el detalle del producto.
+ *
+ * @method abrirDialog
+ * @return {void}
+ */
+let abrirDialog = () => {
+
+    let dialog = document.getElementById("dialogProducto");
+
+    dialog.showModal();
+};
+
+
+/**
+ * Cierra el dialog con el detalle del producto.
+ *
+ * @method cerrarDialog
+ * @return {void}
+ */
+let cerrarDialog = () => {
+
+    let dialog = document.getElementById("dialogProducto");
+
+    dialog.close();
+};
+
+/**
+ * Realiza la suma de dos numeros.
+ *
+ * @method sumar
+ * @return {void}
+ */
+let sumar = () => {
+
+    let num1 = document.getElementById("nums1").value;
+    let num2 = document.getElementById("nums2").value;
+
+    num1 = Number(num1);
+    num2 = Number(num2);
+
+    let resultado = num1 + num2;
+
+    document.getElementById("totalS").value = resultado;
+};
+
+
+/**
+ * Realiza la resta de dos numeros.
+ *
+ * @method restar
+ * @return {void}
+ */
+let restar = () => {
+
+    let num1 = document.getElementById("numr1").value;
+    let num2 = document.getElementById("numr2").value;
+
+    num1 = Number(num1);
+    num2 = Number(num2);
+
+    let resultado = num1 - num2;
+
+    document.getElementById("totalR").value = resultado;
+};
+
+
+/**
+ * Realiza la multiplicacion de dos numeros.
+ *
+ * @method multiplicar
+ * @return {void}
+ */
+let multiplicar = () => {
+
+    let num1 = document.getElementById("numm1").value;
+    let num2 = document.getElementById("numm2").value;
+
+    num1 = Number(num1);
+    num2 = Number(num2);
+
+    let resultado = num1 * num2;
+
+    document.getElementById("totalM").value = resultado;
+};
+
+
+/**
+ * Realiza la division de dos numeros.
+ *
+ * @method dividir
+ * @return {void}
+ */
+let dividir = () => {
+
+    let num1 = document.getElementById("numd1").value;
+    let num2 = document.getElementById("numd2").value;
+
+    num1 = Number(num1);
+    num2 = Number(num2);
+
+    let resultado = num1 / num2;
+
+    document.getElementById("totalD").value = resultado;
+};
