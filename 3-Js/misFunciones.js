@@ -277,9 +277,71 @@ let renderizarProductos = () => {
                     Ver detalle de Producto
                 </button>
 
+                <button
+                    type="button"
+                    onclick="agregarAlCarrito(${indice})"
+                >
+                    Agregar al carrito
+                </button>
+
             </div>
         `;
     });
 
     document.getElementById("productos").innerHTML = contenido;
+};
+
+
+/**
+ * Agrega un producto al carrito y lo guarda en localStorage.
+ *
+ * @method agregarAlCarrito
+ * @param {number} indice - Posicion del producto seleccionado.
+ * @return {void}
+ */
+let agregarAlCarrito = (indice) => {
+
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    let producto = productos[indice];
+
+    carrito.push(producto);
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    alert("Producto agregado al carrito");
+};
+
+
+/**
+ * Muestra los productos almacenados en el carrito.
+ *
+ * @method mostrarCarrito
+ * @return {void}
+ */
+let mostrarCarrito = () => {
+
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    let contenido = "";
+
+    carrito.forEach((producto) => {
+
+        contenido += `
+            <div class="tarjeta">
+
+                <img
+                    src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/${producto.imagen}"
+                    alt="${producto.nombre}"
+                >
+
+                <h2>${producto.nombre}</h2>
+
+                <p>Precio: $${producto.precio}</p>
+
+            </div>
+        `;
+    });
+
+    document.getElementById("productosCarrito").innerHTML = contenido;
 };
