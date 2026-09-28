@@ -101,10 +101,10 @@ function convertirGradosRadianes(valor, unidad) {
 
 
 /**
- * Muestra u oculta el div dependiendo del radio button seleccionado.
+ * Muestra u oculta el div.
  *
  * @method mostrarOcultarDiv
- * @param {string} opcion - Opcion seleccionada por el usuario.
+ * @param {string} opcion
  * @return {void}
  */
 let mostrarOcultarDiv = (opcion) => {
@@ -121,10 +121,10 @@ let mostrarOcultarDiv = (opcion) => {
 
 
 /**
- * Abre el dialog y muestra la informacion del producto seleccionado.
+ * Abre el dialog con los datos del producto.
  *
  * @method abrirDialog
- * @param {number} indice - Posicion del producto en el array.
+ * @param {number} indice
  * @return {void}
  */
 let abrirDialog = (indice) => {
@@ -167,18 +167,15 @@ let cerrarDialog = () => {
 
 
 /**
- * Realiza la suma de dos numeros.
+ * Realiza una suma.
  *
  * @method sumar
  * @return {void}
  */
 let sumar = () => {
 
-    let num1 = document.getElementById("nums1").value;
-    let num2 = document.getElementById("nums2").value;
-
-    num1 = Number(num1);
-    num2 = Number(num2);
+    let num1 = Number(document.getElementById("nums1").value);
+    let num2 = Number(document.getElementById("nums2").value);
 
     let resultado = num1 + num2;
 
@@ -187,18 +184,15 @@ let sumar = () => {
 
 
 /**
- * Realiza la resta de dos numeros.
+ * Realiza una resta.
  *
  * @method restar
  * @return {void}
  */
 let restar = () => {
 
-    let num1 = document.getElementById("numr1").value;
-    let num2 = document.getElementById("numr2").value;
-
-    num1 = Number(num1);
-    num2 = Number(num2);
+    let num1 = Number(document.getElementById("numr1").value);
+    let num2 = Number(document.getElementById("numr2").value);
 
     let resultado = num1 - num2;
 
@@ -207,18 +201,15 @@ let restar = () => {
 
 
 /**
- * Realiza la multiplicacion de dos numeros.
+ * Realiza una multiplicacion.
  *
  * @method multiplicar
  * @return {void}
  */
 let multiplicar = () => {
 
-    let num1 = document.getElementById("numm1").value;
-    let num2 = document.getElementById("numm2").value;
-
-    num1 = Number(num1);
-    num2 = Number(num2);
+    let num1 = Number(document.getElementById("numm1").value);
+    let num2 = Number(document.getElementById("numm2").value);
 
     let resultado = num1 * num2;
 
@@ -227,18 +218,15 @@ let multiplicar = () => {
 
 
 /**
- * Realiza la division de dos numeros.
+ * Realiza una division.
  *
  * @method dividir
  * @return {void}
  */
 let dividir = () => {
 
-    let num1 = document.getElementById("numd1").value;
-    let num2 = document.getElementById("numd2").value;
-
-    num1 = Number(num1);
-    num2 = Number(num2);
+    let num1 = Number(document.getElementById("numd1").value);
+    let num2 = Number(document.getElementById("numd2").value);
 
     let resultado = num1 / num2;
 
@@ -247,7 +235,7 @@ let dividir = () => {
 
 
 /**
- * Genera dinamicamente las tarjetas de productos.
+ * Genera las tarjetas del catalogo.
  *
  * @method renderizarProductos
  * @return {void}
@@ -293,10 +281,10 @@ let renderizarProductos = () => {
 
 
 /**
- * Agrega un producto al carrito y lo guarda en localStorage.
+ * Agrega un producto al carrito.
  *
  * @method agregarAlCarrito
- * @param {number} indice - Posicion del producto seleccionado.
+ * @param {number} indice
  * @return {void}
  */
 let agregarAlCarrito = (indice) => {
@@ -325,7 +313,7 @@ let mostrarCarrito = () => {
 
     let contenido = "";
 
-    carrito.forEach((producto) => {
+    carrito.forEach((producto, indice) => {
 
         contenido += `
             <div class="tarjeta">
@@ -339,9 +327,49 @@ let mostrarCarrito = () => {
 
                 <p>Precio: $${producto.precio}</p>
 
+                <button
+                    type="button"
+                    onclick="eliminarProducto(${indice})"
+                >
+                    Eliminar producto
+                </button>
+
             </div>
         `;
     });
 
     document.getElementById("productosCarrito").innerHTML = contenido;
+};
+
+
+/**
+ * Elimina un producto del carrito.
+ *
+ * @method eliminarProducto
+ * @param {number} indice
+ * @return {void}
+ */
+let eliminarProducto = (indice) => {
+
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    carrito.splice(indice, 1);
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    mostrarCarrito();
+};
+
+
+/**
+ * Vacia completamente el carrito.
+ *
+ * @method vaciarCarrito
+ * @return {void}
+ */
+let vaciarCarrito = () => {
+
+    localStorage.removeItem("carrito");
+
+    mostrarCarrito();
 };
