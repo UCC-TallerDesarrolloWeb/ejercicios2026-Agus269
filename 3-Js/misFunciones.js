@@ -1,10 +1,5 @@
 /**
  * Convierte unidades entre metros, pulgadas, pies y yardas.
- *
- * @method cambioUnidades
- * @param {number} valor - Valor ingresado por el usuario.
- * @param {string} unidad - Unidad modificada por el usuario.
- * @return {void}
  */
 let cambioUnidades = (valor, unidad) => {
 
@@ -56,6 +51,7 @@ let cambioUnidades = (valor, unidad) => {
     }
 
     if (metro !== "") {
+
         metro = Math.round(metro * 100) / 100;
         pulgada = Math.round(pulgada * 100) / 100;
         pie = Math.round(pie * 100) / 100;
@@ -71,11 +67,6 @@ let cambioUnidades = (valor, unidad) => {
 
 /**
  * Convierte grados a radianes y radianes a grados.
- *
- * @method convertirGradosRadianes
- * @param {number} valor - Valor ingresado por el usuario.
- * @param {string} unidad - Campo modificado por el usuario.
- * @return {void}
  */
 function convertirGradosRadianes(valor, unidad) {
 
@@ -101,11 +92,7 @@ function convertirGradosRadianes(valor, unidad) {
 
 
 /**
- * Muestra u oculta el div.
- *
- * @method mostrarOcultarDiv
- * @param {string} opcion
- * @return {void}
+ * Muestra u oculta un div.
  */
 let mostrarOcultarDiv = (opcion) => {
 
@@ -121,11 +108,42 @@ let mostrarOcultarDiv = (opcion) => {
 
 
 /**
- * Abre el dialog con los datos del producto.
- *
- * @method abrirDialog
- * @param {number} indice
- * @return {void}
+ * Formatea un precio con separador de miles y dos decimales.
+ */
+let formatearPrecio = (precio) => {
+
+    let precioFormateado = new Intl.NumberFormat(
+        "es-AR",
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    ).format(precio);
+
+    return "$" + precioFormateado;
+};
+
+
+/**
+ * Actualiza el contador de productos del carrito.
+ */
+let actualizarContadorCarrito = () => {
+
+    let carrito =
+        JSON.parse(localStorage.getItem("carrito")) || [];
+
+    let contador =
+        document.getElementById("contadorCarrito");
+
+    if (contador !== null) {
+
+        contador.innerHTML = carrito.length;
+    }
+};
+
+
+/**
+ * Abre el dialog del producto.
  */
 let abrirDialog = (indice) => {
 
@@ -145,7 +163,7 @@ let abrirDialog = (indice) => {
 
         <p>Marca: ${producto.marca}</p>
 
-        <p>Precio: $${producto.precio}</p>
+        <p>Precio: ${formatearPrecio(producto.precio)}</p>
     `;
 
     document.getElementById("contenidoDialog").innerHTML = contenido;
@@ -156,9 +174,6 @@ let abrirDialog = (indice) => {
 
 /**
  * Cierra el dialog.
- *
- * @method cerrarDialog
- * @return {void}
  */
 let cerrarDialog = () => {
 
@@ -168,9 +183,6 @@ let cerrarDialog = () => {
 
 /**
  * Realiza una suma.
- *
- * @method sumar
- * @return {void}
  */
 let sumar = () => {
 
@@ -185,9 +197,6 @@ let sumar = () => {
 
 /**
  * Realiza una resta.
- *
- * @method restar
- * @return {void}
  */
 let restar = () => {
 
@@ -202,9 +211,6 @@ let restar = () => {
 
 /**
  * Realiza una multiplicacion.
- *
- * @method multiplicar
- * @return {void}
  */
 let multiplicar = () => {
 
@@ -219,9 +225,6 @@ let multiplicar = () => {
 
 /**
  * Realiza una division.
- *
- * @method dividir
- * @return {void}
  */
 let dividir = () => {
 
@@ -235,16 +238,15 @@ let dividir = () => {
 
 
 /**
- * Genera las tarjetas del catalogo.
- *
- * @method renderizarProductos
- * @return {void}
+ * Renderiza los productos recibidos.
  */
-let renderizarProductos = () => {
+let renderizarProductos = (listaProductos = productos) => {
 
     let contenido = "";
 
-    productos.forEach((producto, indice) => {
+    listaProductos.forEach((producto) => {
+
+        let indiceOriginal = productos.indexOf(producto);
 
         contenido += `
             <div class="tarjeta">
@@ -256,18 +258,18 @@ let renderizarProductos = () => {
 
                 <h2>${producto.nombre}</h2>
 
-                <p>Precio: $${producto.precio}</p>
+                <p>Precio: ${formatearPrecio(producto.precio)}</p>
 
                 <button
                     type="button"
-                    onclick="abrirDialog(${indice})"
+                    onclick="abrirDialog(${indiceOriginal})"
                 >
                     Ver detalle de Producto
                 </button>
 
                 <button
                     type="button"
-                    onclick="agregarAlCarrito(${indice})"
+                    onclick="agregarAlCarrito(${indiceOriginal})"
                 >
                     Agregar al carrito
                 </button>
@@ -277,43 +279,215 @@ let renderizarProductos = () => {
     });
 
     document.getElementById("productos").innerHTML = contenido;
+
+    actualizarContadorCarrito();
+};
+
+
+/**
+ * Ordena una lista de productos.
+ */
+let ordenarProductos = (listaProductos) => {
+
+    let orden =
+        document.getElementById("orden").value;
+
+
+    if (orden === "precioMenor") {
+
+        listaProductos.sort((a, b) => {
+
+            return a.precio - b.precio;
+        });
+
+    } else if (orden === "precioMayor") {
+
+        listaProductos.sort((a, b) => {
+
+            return b.precio - a.precio;
+        });
+
+    } else if (orden === "nombreAZ") {
+
+        listaProductos.sort((a, b) => {
+
+            return a.nombre.localeCompare(b.nombre);
+        });
+
+    } else if (orden === "nombreZA") {
+
+        listaProductos.sort((a, b) => {
+
+            return b.nombre.localeCompare(a.nombre);
+        });
+    }
+
+
+    return listaProductos;
+};
+
+
+/**
+ * Filtra los productos del catalogo.
+ */
+let filtrarProductos = () => {
+
+    let palabra = document
+        .getElementById("buscar")
+        .value
+        .toLowerCase();
+
+    let minimoTexto =
+        document.getElementById("minimo").value;
+
+    let maximoTexto =
+        document.getElementById("maximo").value;
+
+    let marca =
+        document.getElementById("marca").value;
+
+    let protectores =
+        document.getElementById("protectores").checked;
+
+    let entrenamiento =
+        document.getElementById("entrenamiento").checked;
+
+    let dobok =
+        document.getElementById("dobok").checked;
+
+
+    let productosFiltrados = productos.filter((producto) => {
+
+        let coincidePalabra =
+            producto.nombre
+                .toLowerCase()
+                .includes(palabra);
+
+
+        let coincideMinimo =
+            minimoTexto === "" ||
+            producto.precio >= Number(minimoTexto);
+
+
+        let coincideMaximo =
+            maximoTexto === "" ||
+            producto.precio <= Number(maximoTexto);
+
+
+        let coincideMarca =
+            marca === "" ||
+            producto.marca === marca;
+
+
+        let hayCategoriaSeleccionada =
+            protectores ||
+            entrenamiento ||
+            dobok;
+
+
+        let coincideCategoria =
+            !hayCategoriaSeleccionada ||
+            (protectores &&
+                producto.categoria === "Protectores") ||
+            (entrenamiento &&
+                producto.categoria === "Entrenamiento") ||
+            (dobok &&
+                producto.categoria === "Dobok");
+
+
+        return (
+            coincidePalabra &&
+            coincideMinimo &&
+            coincideMaximo &&
+            coincideMarca &&
+            coincideCategoria
+        );
+    });
+
+
+    productosFiltrados =
+        ordenarProductos(productosFiltrados);
+
+
+    renderizarProductos(productosFiltrados);
 };
 
 
 /**
  * Agrega un producto al carrito.
- *
- * @method agregarAlCarrito
- * @param {number} indice
- * @return {void}
  */
 let agregarAlCarrito = (indice) => {
 
-    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    let carrito =
+        JSON.parse(localStorage.getItem("carrito")) || [];
 
     let producto = productos[indice];
 
     carrito.push(producto);
 
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+    localStorage.setItem(
+        "carrito",
+        JSON.stringify(carrito)
+    );
+
+    actualizarContadorCarrito();
 
     alert("Producto agregado al carrito");
 };
 
 
 /**
- * Muestra los productos almacenados en el carrito.
- *
- * @method mostrarCarrito
- * @return {void}
+ * Muestra los productos del carrito, la cantidad y el total.
  */
 let mostrarCarrito = () => {
 
-    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    let carrito =
+        JSON.parse(localStorage.getItem("carrito")) || [];
 
     let contenido = "";
 
-    carrito.forEach((producto, indice) => {
+    let productosAgrupados = [];
+
+    let total = 0;
+
+
+    carrito.forEach((producto) => {
+
+        total += producto.precio;
+
+        let encontrado = false;
+
+
+        productosAgrupados.forEach((elemento) => {
+
+            if (elemento.producto.nombre === producto.nombre) {
+
+                elemento.cantidad++;
+
+                encontrado = true;
+            }
+        });
+
+
+        if (!encontrado) {
+
+            productosAgrupados.push({
+                producto: producto,
+                cantidad: 1
+            });
+        }
+    });
+
+
+    productosAgrupados.forEach((elemento) => {
+
+        let producto = elemento.producto;
+
+        let cantidad = elemento.cantidad;
+
+        let subtotal =
+            producto.precio * cantidad;
+
 
         contenido += `
             <div class="tarjeta">
@@ -325,11 +499,15 @@ let mostrarCarrito = () => {
 
                 <h2>${producto.nombre}</h2>
 
-                <p>Precio: $${producto.precio}</p>
+                <p>Precio: ${formatearPrecio(producto.precio)}</p>
+
+                <p>Cantidad: ${cantidad}</p>
+
+                <p>Subtotal: ${formatearPrecio(subtotal)}</p>
 
                 <button
                     type="button"
-                    onclick="eliminarProducto(${indice})"
+                    onclick="eliminarProducto('${producto.nombre}')"
                 >
                     Eliminar producto
                 </button>
@@ -338,34 +516,60 @@ let mostrarCarrito = () => {
         `;
     });
 
-    document.getElementById("productosCarrito").innerHTML = contenido;
+
+    document.getElementById("productosCarrito").innerHTML =
+        contenido;
+
+
+    document.getElementById("totalCarrito").innerHTML =
+        "Total: " + formatearPrecio(total);
+
+
+    actualizarContadorCarrito();
 };
 
 
 /**
- * Elimina un producto del carrito.
- *
- * @method eliminarProducto
- * @param {number} indice
- * @return {void}
+ * Elimina una unidad de un producto del carrito.
  */
-let eliminarProducto = (indice) => {
+let eliminarProducto = (nombreProducto) => {
 
-    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    let carrito =
+        JSON.parse(localStorage.getItem("carrito")) || [];
 
-    carrito.splice(indice, 1);
+    let indice = -1;
 
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    carrito.forEach((producto, posicion) => {
+
+        if (
+            producto.nombre === nombreProducto &&
+            indice === -1
+        ) {
+
+            indice = posicion;
+        }
+    });
+
+
+    if (indice !== -1) {
+
+        carrito.splice(indice, 1);
+    }
+
+
+    localStorage.setItem(
+        "carrito",
+        JSON.stringify(carrito)
+    );
+
 
     mostrarCarrito();
 };
 
 
 /**
- * Vacia completamente el carrito.
- *
- * @method vaciarCarrito
- * @return {void}
+ * Vacia el carrito.
  */
 let vaciarCarrito = () => {
 
