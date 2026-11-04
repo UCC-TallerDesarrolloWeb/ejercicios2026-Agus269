@@ -61,14 +61,14 @@
 -  [x] Renderizado Dinámico del Dialog
 -  [x] Carrito de Compras con localstorage
 -  [x] Vaciar Carrito y Eliminar Producto
--  [ ] Filter
--  [ ] Formatear Precio
--  [ ] Total y Cantidad de Productos
--  [ ] Ordenar el catálogo
+-  [x] Filter
+-  [x] Formatear Precio
+-  [x] Total y Cantidad de Productos
+-  [x] Ordenar el catálogo
 
 ## Unidad 4: Funcionamiento del Navegador y Herramientas de Desarrollo
--  [ ] Checkeo de accesiilidad: AXE
--  [ ] Checkeo de Lighthouse: accesibilidad, CEO, performance, buenas prácticas
+-  [x] Checkeo de accesiilidad: AXE
+-  [x] Checkeo de Lighthouse: accesibilidad, CEO, performance, buenas prácticas
 
 ## Unidad 5: Frameworks y Preprocesadores CSS
 
@@ -76,8 +76,8 @@
 -  [x] Instagram
 -  [x] Componente para selección de vuelos
 -  [x] Timeline
--  [ ] Componente Perfil
--  [ ] Youtube
+-  [x] Componente Perfil
+-  [x] Youtube
 
 ### SASS
 -  [ ] Sass básico
