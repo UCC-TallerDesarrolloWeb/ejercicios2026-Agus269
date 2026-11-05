@@ -1,4 +1,4 @@
-﻿# Gimnasio en React
+# Gimnasio en React
 
 Ejercicios de clase de la unidad 6, con React, Vite, React Router y Sass.
 
