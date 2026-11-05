@@ -1,54 +1,24 @@
-const activities = [
-  {
-    nombre: 'taekwondo',
-    descripcion: 'Arte marcial coreana',
-    horarios: [
-      { dia: 2, 'hora-inicio': '18:30', 'hora-fin': '20:00' },
-      { dia: 4, 'hora-inicio': '18:30', 'hora-fin': '20:00' },
-    ],
-  },
-  {
-    nombre: 'zumba',
-    descripcion: 'Ritmos latinos',
-    horarios: [
-      { dia: 1, 'hora-inicio': '19:30', 'hora-fin': '20:30' },
-      { dia: 3, 'hora-inicio': '19:30', 'hora-fin': '20:30' },
-    ],
-  },
-]
-
-const diasSemana = [
-  'Domingo',
-  'Lunes',
-  'Martes',
-  'Miércoles',
-  'Jueves',
-  'Viernes',
-  'Sábado',
-]
+﻿import Card from '@/components/Card'
+import { activities, diasSemana } from '@/data/activities'
 
 const Actividades = ({ logueado }) => {
   return (
     <section>
       <h2>Actividades</h2>
-
-      {activities.map((actividad) => (
-        <article key={actividad.nombre}>
-          <h3>{actividad.nombre}</h3>
-          <p>{actividad.descripcion}</p>
-
-          <ul>
-            {actividad.horarios.map((horario) => (
-              <li key={`${actividad.nombre}-${horario.dia}`}>
-                {diasSemana[horario.dia]}: {horario['hora-inicio']} a{' '}
-                {horario['hora-fin']}
-              </li>
-            ))}
-          </ul>
-
-          {logueado && <button>Inscribirse</button>}
-        </article>
-      ))}
+      <div className="cards">
+        {activities.map((actividad) => (
+          <Card key={actividad.id} titulo={actividad.nombre} subtitulo={actividad.descripcion}>
+            <ul>
+              {actividad.horarios.map((horario) => (
+                <li key={`${actividad.id}-${horario.dia}`}>
+                  {diasSemana[horario.dia]}: {horario['hora-inicio']} a {horario['hora-fin']}
+                </li>
+              ))}
+            </ul>
+            {logueado && <button type="button">Inscribirse</button>}
+          </Card>
+        ))}
+      </div>
     </section>
   )
 }

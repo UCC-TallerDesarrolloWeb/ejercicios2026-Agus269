@@ -1,16 +1,30 @@
-# React + Vite
+﻿# Gimnasio en React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ejercicios de clase de la unidad 6, con React, Vite, React Router y Sass.
 
-Currently, two official plugins are available:
+## Ejecutar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm ci
+npm run dev
+```
 
-## React Compiler
+Abrir la dirección que indique Vite (normalmente http://localhost:5173).
+Usuario y contraseña de práctica: `admin` / `admin`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Ejercicios
 
-## Expanding the ESLint configuration
+- `/`: cuatro tarjetas con imágenes; dos se sirven desde `public/home` y dos se importan desde `src/assets/home`.
+- `/login`: formulario controlado que redirige a actividades al ingresar.
+- `/actividades`: tarjetas con horarios y botón de inscripción visible solo al iniciar sesión.
+- Layout compartido con Header, Footer y Outlet; Logout actualiza el estado de sesión.
+- `src/components`, `src/pages`, `src/styles`: organización del proyecto.
+- Alias `@` para `src`, configurado en Vite y jsconfig.
+- `Card` recibe título, subtítulo y contenido mediante `children`; los datos están en `src/data`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Verificar
+
+```bash
+npm run build
+npm run lint
+```
