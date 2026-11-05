@@ -5,6 +5,9 @@ import Actividades from '@/pages/Actividades'
 import Home from '@/pages/Home'
 import Layout from '@/components/Layout'
 import Login from '@/pages/Login'
+import Poke from '@/pages/Poke'
+import Store from '@/pages/Store'
+import Cart from '@/pages/Cart'
 
 const App = () => {
   const [logueado, setLogueado] = useState(false)
@@ -25,6 +28,9 @@ const App = () => {
           }
         >
           <Route path="/" element={<Home />} />
+          <Route path="/poke" element={<Poke />} />
+          <Route path="/tienda" element={<Store logueado={logueado} />} />
+          <Route path="/carrito" element={<Cart logueado={logueado} />} />
           <Route
             path="/login"
             element={<Login setLogueado={setLogueado} />}

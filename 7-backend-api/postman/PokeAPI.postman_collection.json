@@ -1,0 +1,31 @@
+{
+  "info": {
+    "name": "Clase - Análisis de PokeAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET Bulbasaur",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "https://pokeapi.co/api/v2/pokemon/1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Respuesta HTTP 200', () => pm.response.to.have.status(200));",
+              "const pokemon = pm.response.json();",
+              "pm.test('Es Bulbasaur', () => { pm.expect(pokemon.id).to.eql(1); pm.expect(pokemon.name).to.eql('bulbasaur'); });",
+              "pm.test('Tipos planta y veneno', () => pm.expect(pokemon.types.map(tipo => tipo.type.name)).to.eql(['grass', 'poison']));",
+              "pm.test('Altura y peso', () => { pm.expect(pokemon.height).to.eql(7); pm.expect(pokemon.weight).to.eql(69); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
