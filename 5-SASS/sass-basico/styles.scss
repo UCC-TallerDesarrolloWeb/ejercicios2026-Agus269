@@ -1,0 +1,29 @@
+@use 'variables' as *;
+@use 'anidados';
+
+@mixin boton($fondo, $texto) {
+    background-color: $fondo;
+    color: $texto;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+body {
+    background-color: $color-fondo;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: $color-principal;
+    color: $color-texto;
+    padding: 20px;
+}
+
+.primario {
+    @include boton($color-principal, $color-texto);
+}
+
+.secundario {
+    @include boton($color-secundario, $color-texto);
+}
