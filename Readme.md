@@ -96,8 +96,8 @@
 ## Unidad 7: Backend y APIs
 -  [x] Mock del Backend
 -  [x] Análisis de Pokeapi
--  [ ] APIs en React
--  [ ] APIs en React
+-  [x] APIs en React: Bulbasaur
+-  [x] APIs en React: Pokémon del 1 al 20
 -  [ ] Carrito
 
 ## Unidad 8: Buenas prácticas en los desarrollos web

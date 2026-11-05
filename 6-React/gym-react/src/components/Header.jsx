@@ -7,6 +7,7 @@ const Header = ({ logueado, cerrarSesion }) => {
       <nav aria-label="Navegación principal">
         <NavLink to="/">Inicio</NavLink>{' '}
         <NavLink to="/actividades">Actividades</NavLink>{' '}
+        <NavLink to="/poke">Pokémon</NavLink>{' '}
         {logueado ? (
           <button type="button" onClick={cerrarSesion}>Cerrar sesión</button>
         ) : (
