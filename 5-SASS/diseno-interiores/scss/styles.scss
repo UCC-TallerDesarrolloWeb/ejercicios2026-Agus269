@@ -1,0 +1,62 @@
+@use 'mobile';
+$color-principal: #222;
+$color-secundario: #f4f4f4;
+$color-texto-claro: white;
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: $color-principal;
+    color: $color-texto-claro;
+    padding: 30px;
+    text-align: center;
+}
+
+nav {
+    background-color: $color-secundario;
+    padding: 15px;
+    text-align: center;
+
+    a {
+        color: $color-principal;
+        margin: 0 15px;
+        text-decoration: none;
+    }
+}
+
+.principal {
+    padding: 60px 30px;
+    text-align: center;
+}
+
+.portfolio {
+    padding: 30px;
+
+    h2 {
+        text-align: center;
+    }
+
+    .proyectos {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+
+        article {
+            background-color: $color-secundario;
+            padding: 50px 20px;
+            text-align: center;
+        }
+    }
+}
+
+footer {
+    background-color: $color-principal;
+    color: $color-texto-claro;
+    padding: 20px;
+    text-align: center;
+}
+
+@include mobile.mobile;
