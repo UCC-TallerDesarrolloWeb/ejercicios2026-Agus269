@@ -8,6 +8,8 @@ const Header = ({ logueado, cerrarSesion }) => {
         <NavLink to="/">Inicio</NavLink>{' '}
         <NavLink to="/actividades">Actividades</NavLink>{' '}
         <NavLink to="/poke">Pokémon</NavLink>{' '}
+        <NavLink to="/tienda">Tienda</NavLink>{' '}
+        <NavLink to="/carrito">Carrito</NavLink>{' '}
         {logueado ? (
           <button type="button" onClick={cerrarSesion}>Cerrar sesión</button>
         ) : (

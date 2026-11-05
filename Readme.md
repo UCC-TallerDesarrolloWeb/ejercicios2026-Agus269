@@ -98,7 +98,7 @@
 -  [x] Análisis de Pokeapi
 -  [x] APIs en React: Bulbasaur
 -  [x] APIs en React: Pokémon del 1 al 20
--  [ ] Carrito
+-  [x] Carrito
 
 ## Unidad 8: Buenas prácticas en los desarrollos web
 

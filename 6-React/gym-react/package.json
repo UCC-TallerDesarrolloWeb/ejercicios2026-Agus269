@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "services": "json-server --watch src/data/activities.json --port 4000"
+    "services": "json-server --watch src/data/db.json --port 4000",
+    "services:activities": "json-server --watch src/data/activities.json --port 4000"
   },
   "dependencies": {
     "react": "^19.3.1",
