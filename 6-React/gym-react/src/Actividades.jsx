@@ -27,14 +27,14 @@ const diasSemana = [
   'Sábado',
 ]
 
-const Actividades = () => {
+const Actividades = ({ logueado }) => {
   return (
-    <main>
-      <h1>Actividades</h1>
+    <section>
+      <h2>Actividades</h2>
 
       {activities.map((actividad) => (
         <article key={actividad.nombre}>
-          <h2>{actividad.nombre}</h2>
+          <h3>{actividad.nombre}</h3>
           <p>{actividad.descripcion}</p>
 
           <ul>
@@ -45,9 +45,11 @@ const Actividades = () => {
               </li>
             ))}
           </ul>
+
+          {logueado && <button>Inscribirse</button>}
         </article>
       ))}
-    </main>
+    </section>
   )
 }
 

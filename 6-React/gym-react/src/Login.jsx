@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import './styles/Login.scss'
 
-const Login = () => {
+const Login = ({ setLogueado }) => {
   const [usuario, setUsuario] = useState('')
   const [password, setPassword] = useState('')
 
@@ -14,6 +14,7 @@ const Login = () => {
 
     if (usuario === 'admin' && password === 'admin') {
       console.log('Login OK')
+      setLogueado(true)
       navigate('/actividades')
     } else {
       console.log('Login Incorrecto')
@@ -21,9 +22,9 @@ const Login = () => {
   }
 
   return (
-    <main className="login">
+    <section className="login">
       <form onSubmit={ingresar}>
-        <h1>Login</h1>
+        <h2>Login</h2>
 
         <label htmlFor="usuario">Usuario</label>
         <input
@@ -41,11 +42,9 @@ const Login = () => {
           onChange={(event) => setPassword(event.target.value)}
         />
 
-        <button type="submit">
-          Ingresar
-        </button>
+        <button type="submit">Ingresar</button>
       </form>
-    </main>
+    </section>
   )
 }
 
