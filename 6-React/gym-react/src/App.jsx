@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import Actividades from './Actividades'
-import Home from './Home'
-import Layout from './Layout'
-import Login from './Login'
+import Actividades from '@/pages/Actividades'
+import Home from '@/pages/Home'
+import Layout from '@/components/Layout'
+import Login from '@/pages/Login'
 
 const App = () => {
   const [logueado, setLogueado] = useState(false)
